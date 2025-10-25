@@ -1,9 +1,14 @@
 import { createRoot } from 'react-dom/client'
 import App from './App'
+import { injectStore } from './services/apiInstance';
+import { Provider } from 'react-redux';
+import { store } from './redux/store';
+
+injectStore(store);
 
 
 createRoot(document.getElementById('root')!).render(
-  
-    <App />
-  
+  <Provider store={store}>
+      <App />
+  </Provider>  
 )
