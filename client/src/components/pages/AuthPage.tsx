@@ -22,8 +22,8 @@ export default function AuthPage(): React.JSX.Element {
 
   return (
     <Grid container>
-      <Grid xs={4} /> {/* Убрано item */}
-      <Grid xs={4}>   {/* Убрано item */}
+      <Grid item xs={4} />
+      <Grid item xs={4}>
         <Box
           display="flex"
           flexDirection="column"
@@ -44,7 +44,7 @@ export default function AuthPage(): React.JSX.Element {
           </Box>
         </Box>
       </Grid>
-      <Grid xs={4} /> {/* Убрано item */}
+      <Grid item xs={4} />
     </Grid>
-);
+  );
 }
