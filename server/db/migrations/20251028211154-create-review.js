@@ -10,10 +10,22 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       userId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'Users', 
+          key: 'id'
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE' // При удалении пользователя удаляем отзывы
       },
       productId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'Products', 
+          key: 'id'
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE' // При удалении товара удаляем отзывы
       },
       rating: {
         type: Sequelize.INTEGER
@@ -30,6 +42,7 @@ module.exports = {
         type: Sequelize.DATE
       }
     });
+    await queryInterface.addIndex('Reviews', ['userId', 'productId']);
   },
   async down(queryInterface, Sequelize) {
     await queryInterface.dropTable('Reviews');

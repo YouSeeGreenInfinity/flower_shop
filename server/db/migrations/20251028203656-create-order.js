@@ -10,7 +10,13 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       userId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'Users', 
+          key: 'id'
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'SET NULL' // Если пользователь удален, заказы остаются
       },
       status: {
         type: Sequelize.STRING
@@ -33,6 +39,7 @@ module.exports = {
         type: Sequelize.DATE
       }
     });
+    await queryInterface.addIndex('Orders', ['userId']);
   },
   async down(queryInterface, Sequelize) {
     await queryInterface.dropTable('Orders');
