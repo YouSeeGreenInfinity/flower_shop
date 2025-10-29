@@ -16,4 +16,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use('/api/auth', userRouter);
 
+
+
+
 app.listen(PORT, () => console.log(`Started on port ${PORT}`));

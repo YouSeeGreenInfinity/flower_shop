@@ -10,10 +10,20 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       orderId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'Orders', 
+          key: 'id'
+        }
       },
       productId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'Products', 
+          key: 'id'
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'SET NULL' // Если товар удален, запись остается
       },
       quantity: {
         type: Sequelize.INTEGER
@@ -30,6 +40,7 @@ module.exports = {
         type: Sequelize.DATE
       }
     });
+    await queryInterface.addIndex('OrderItems', ['orderId', 'productId']);
   },
   async down(queryInterface, Sequelize) {
     await queryInterface.dropTable('OrderItems');
