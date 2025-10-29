@@ -1,4 +1,14 @@
-# React + TypeScript + Vite
+# Установка и запуск
+
+## Установка зависимостей
+
+```npm install```
+
+- Запуск storybook:
+
+```npm run storybook```
+
+## React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
