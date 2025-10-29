@@ -1,3 +1,12 @@
+# Установка и запуск
+
+## Установка зависимостей
+
+```npm install```
+
+- Запуск storybook:
+
+```npm run storybook```
 
 ## React + TypeScript + Vite
 
