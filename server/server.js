@@ -1,7 +1,9 @@
 const express = require("express");
+const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const morgan = require("morgan");
 const userRouter = require("./routes/userRouter");
+const cvetiRouter = require("./routes/cvetiRouter");
 
 require('dotenv').config();
 
@@ -15,7 +17,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use('/api/auth', userRouter);
-
+app.use('/api/catalog/cveti/', cvetiRouter);
 
 
 
