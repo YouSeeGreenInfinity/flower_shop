@@ -2,6 +2,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom"
 import Root from "./components/ui/Root"
 import IndexPage from "./components/pages/IndexPage"
 import AdminPage from "./components/pages/AdminPage"
+import './styles.css'
 
 function App():React.JSX.Element {
   const router = createBrowserRouter([
