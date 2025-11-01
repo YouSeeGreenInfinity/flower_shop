@@ -1,6 +1,6 @@
 // components/Footer/Footer.stories.ts
 import type { Meta, StoryObj } from '@storybook/react';
-import Footer, { type FooterProps } from './Footer';
+import Footer from './Footer';
 
 const meta: Meta<typeof Footer> = {
   title: 'Components/Footer',
@@ -13,17 +13,32 @@ const meta: Meta<typeof Footer> = {
 export default meta;
 type Story = StoryObj<typeof Footer>;
 
-const defaultArgs: FooterProps = {
-  text: '© 2024 My Website. All rights reserved.',
-  links: [
-    { url: '/privacy', label: 'Privacy Policy' },
-    { url: '/terms', label: 'Terms of Service' },
-    { url: '/contact', label: 'Contact Us' },
-    { url: '/about', label: 'About' }
-  ]
+export const Default: Story = {};
+
+// Дополнительные сторисы для демонстрации разных состояний
+export const WithAllColumnsTitled: Story = {
+  render: () => {
+    // Для демонстрации альтернативного варианта в сторибуке
+    return (
+      <div>
+        <Footer />
+        <div style={{ padding: '20px', backgroundColor: '#f5f5f5', marginTop: '20px' }}>
+          <p>Примечание: В этой стори показан стандартный футер. Для изменения данных нужно редактировать компонент Footer.tsx</p>
+        </div>
+      </div>
+    );
+  }
 };
 
-export const Default: Story = {
-  args: defaultArgs
+export const Minimal: Story = {
+  render: () => {
+    return (
+      <div>
+        <Footer />
+        <div style={{ padding: '20px', backgroundColor: '#f5f5f5', marginTop: '20px' }}>
+          <p>Минимальная версия футера с текущими настройками</p>
+        </div>
+      </div>
+    );
+  }
 };
-
