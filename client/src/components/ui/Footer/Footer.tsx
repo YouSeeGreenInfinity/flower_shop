@@ -1,5 +1,11 @@
+// src/components/Footer.tsx
 import React from 'react';
 import { Box, Typography, Link, Container } from '@mui/material';
+import {
+  Phone as PhoneIcon,
+  Email as EmailIcon,
+  LocationOn as LocationOnIcon,
+} from '@mui/icons-material';
 
 const Footer: React.FC = () => {
   const footerData = {
@@ -43,18 +49,27 @@ const Footer: React.FC = () => {
       component="footer"
       sx={{
         backgroundColor: 'black',
-        color: '#fff', // общий белый цвет текста
+        color: '#fff',
         py: 4,
+        px: { xs: 2, sm: 4, md: 8 }, // ✅ Добавлены отступы слева и справа
         fontFamily: 'Roboto, Arial, sans-serif',
       }}
     >
-      <Container maxWidth="lg">
-        <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 4 }}>
+      <Container maxWidth="lg" disableGutters> {/* ✅ disableGutters убирает внутренние поля контейнера */}
+        <Box
+          sx={{
+            display: 'flex',
+            flexWrap: 'wrap',
+            gap: 4,
+            justifyContent: 'space-between',
+            
+          }}
+        >
           {/* Левая часть — ссылки */}
-          <Box sx={{ flex: '1 1 66%', minWidth: 300 }}>
+          <Box sx={{ flex: '1 1 60%', minWidth: 280 }}>
             <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 4 }}>
               {columns.map((column, index) => (
-                <Box key={index} sx={{ flex: '1 1 200px' }}>
+                <Box key={index} sx={{ flex: '1 1 180px' }}>
                   {column.title && (
                     <Typography
                       variant="h6"
@@ -75,14 +90,14 @@ const Footer: React.FC = () => {
                         key={link.url}
                         href={link.url}
                         sx={{
-                          color: '#fff',        // белый цвет
-                          fontSize: '1rem',     // как h6
-                          fontWeight: 700,      // жирный
+                          color: '#fff',
+                          fontSize: '1rem',
+                          fontWeight: 700,
                           textDecoration: 'none',
                           letterSpacing: '0.05em',
                           transition: 'all 0.3s ease-in-out',
                           '&:hover': {
-                            color: '#90caf9', // светло-синий при наведении
+                            color: '#90caf9',
                             textDecoration: 'underline',
                             transform: 'translateX(2px)',
                           },
@@ -128,55 +143,63 @@ const Footer: React.FC = () => {
             {/* Телефоны */}
             <Box sx={{ mb: 2 }}>
               {contacts.phones.map((phone, index) => (
-                <Typography
+                <Box
                   key={index}
-                  variant="body2"
-                  sx={{
-                    mb: 0.5,
-                    color: '#fff',
-                    fontSize: '1rem',
-                    fontWeight: 700,
-                  }}
+                  sx={{ display: 'flex', alignItems: 'center', mb: 1 }}
                 >
-                  {phone}
-                </Typography>
+                  <PhoneIcon sx={{ mr: 1, color: '#90caf9' }} />
+                  <Typography
+                    variant="body2"
+                    sx={{
+                      color: '#fff',
+                      fontSize: '1rem',
+                      fontWeight: 700,
+                    }}
+                  >
+                    {phone}
+                  </Typography>
+                </Box>
               ))}
             </Box>
 
             {/* Email */}
-            <Link
-              href={`mailto:${contacts.email}`}
-              sx={{
-                display: 'block',
-                mb: 2,
-                color: '#fff',
-                fontSize: '1rem',
-                fontWeight: 700,
-                textDecoration: 'none',
-                letterSpacing: '0.05em',
-                transition: 'all 0.3s ease-in-out',
-                '&:hover': {
-                  color: '#90caf9',
-                  textDecoration: 'underline',
-                  transform: 'translateX(2px)',
-                },
-              }}
-            >
-              {contacts.email}
-            </Link>
+            <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
+              <EmailIcon sx={{ mr: 1, color: '#90caf9' }} />
+              <Link
+                href={`mailto:${contacts.email}`}
+                sx={{
+                  color: '#fff',
+                  fontSize: '1rem',
+                  fontWeight: 700,
+                  textDecoration: 'none',
+                  letterSpacing: '0.05em',
+                  transition: 'all 0.3s ease-in-out',
+                  '&:hover': {
+                    color: '#90caf9',
+                    textDecoration: 'underline',
+                    transform: 'translateX(2px)',
+                  },
+                }}
+              >
+                {contacts.email}
+              </Link>
+            </Box>
 
             {/* Адрес */}
-            <Typography
-              variant="body2"
-              sx={{
-                color: '#fff',
-                fontSize: '1rem',
-                fontWeight: 700,
-                opacity: 0.9,
-              }}
-            >
-              {contacts.address}
-            </Typography>
+            <Box sx={{ display: 'flex', alignItems: 'center' }}>
+              <LocationOnIcon sx={{ mr: 1, color: '#90caf9' }} />
+              <Typography
+                variant="body2"
+                sx={{
+                  color: '#fff',
+                  fontSize: '1rem',
+                  fontWeight: 700,
+                  opacity: 0.9,
+                }}
+              >
+                {contacts.address}
+              </Typography>
+            </Box>
           </Box>
         </Box>
       </Container>
@@ -185,4 +208,3 @@ const Footer: React.FC = () => {
 };
 
 export default Footer;
-

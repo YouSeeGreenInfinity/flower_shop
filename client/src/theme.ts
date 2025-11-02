@@ -2,6 +2,7 @@
 import { createTheme } from '@mui/material/styles';
 import { blue, pink, grey } from '@mui/material/colors';
 
+
 const lightTheme = createTheme({
   palette: {
     mode: 'light',
